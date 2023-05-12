@@ -23,5 +23,4 @@ If a deadlock is detected, an error message will be displayed.
 The input values must be entered in the correct format for the program to work properly.
 
 ![Start](https://github.com/3bdallaaa/Banker_Algorithm/assets/118936824/e6da5bb0-dd53-46aa-8c22-ff3abffe177d)
-![Result](https://github.com/3bdallaaa/Banker_Algorithm/assets/118936824/885f5282-168e-45c4-ad41-da83de50ab85)
-
+![Result](https://github.com/3bdallaaa/Banker_Algorithm/assets/118936824/f9065489-d9af-4223-909f-cc1ba1e28ee6)
