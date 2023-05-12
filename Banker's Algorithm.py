@@ -1,11 +1,9 @@
 import tkinter as tk
 import random
 
-# Define the main window
 root = tk.Tk()
 root.title("Banker's Algorithm")
 
-# Define the input fields
 np_label = tk.Label(root, text="Number of processes:")
 np_label.grid(row=0, column=0, padx=10, pady=10)
 np_entry = tk.Entry(root, width=10)
@@ -31,13 +29,10 @@ avail_label.grid(row=4, column=0, padx=10, pady=10)
 avail_entry = tk.Entry(root, width=20)
 avail_entry.grid(row=4, column=1, padx=10, pady=10)
 
-# Define the output field
 output_label = tk.Label(root, text="", font=("Arial", 12))
 output_label.grid(row=5, column=0, columnspan=2, padx=10, pady=10)
 
-# Define the submit button
 def submit():
-    # Get the input values
     try:
         np = int(np_entry.get())
         nr = int(nr_entry.get())
@@ -45,7 +40,7 @@ def submit():
         max = [[int(x) for x in row.split()] for row in max_entry.get("1.0", tk.END).split('\n') if row.strip()]
         avail = [int(x) for x in avail_entry.get().split()]
 
-        # Check that the input values are valid
+        # Check inputs validity
         if np <= 0 or nr <= 0 or len(allocation) != np or len(max) != np or len(avail) != nr:
             raise ValueError
 
@@ -59,18 +54,13 @@ def submit():
     except ValueError:
         output_label.config(text="Invalid input values!")
         return
-
-    # Calculate the need matrix
     need = [[max[i][j] - allocation[i][j] for j in range(nr)] for i in range(np)]
 
-    # Initialize the work and finish arrays
     work = avail.copy()
     finish = [False] * np
 
-    # Initialize the safe sequence
     safe_seq = []
 
-    # Loop through all processes until all have been executed or a deadlock is detected
     while False in finish:
         # Find a process that can be executed
         found = False
@@ -84,18 +74,17 @@ def submit():
                 found = True
                 break
 
-        # If no process can be executed, a deadlock has occurred
+        # If no process can be executed
         if not found:
             output_label.config(text="Deadlock detected!")
             return
 
-    # If all processes have been executed, the system is in a safe state
-    output_label.config(text="The system is in safe state! Safe sequence is ==> " + " -> ".join("P" + str(safe_seq[i]) for i in range(np)))
+    # If all processes have been executed
+    output_label.config(text="System is in safe state \n Safe sequence is: " + " -> ".join("P" + str(safe_seq[i]) for i in range(np)))
 
 submit_button = tk.Button(root, text="Submit", font=("Arial", 12), command=submit)
 submit_button.grid(row=6, column=0, padx=10, pady=10)
 
-# Define the reset button
 def reset():
     np_entry.delete(0, tk.END)
     nr_entry.delete(0, tk.END)
@@ -107,7 +96,6 @@ def reset():
 reset_button = tk.Button(root, text="Reset", font=("Arial", 12), command=reset)
 reset_button.grid(row=6, column=1, padx=10, pady=10)
 
-# Add padding to all widgets
 for child in root.winfo_children():
     child.grid_configure(padx=10, pady=10)
 
