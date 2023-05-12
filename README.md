@@ -1,6 +1,6 @@
 Mohamed Abdalla
 
-                          ***Banker's Algorithm for Deadlocks Prevention in python with GUI***
+*****Banker's Algorithm for Deadlocks Prevention in python with GUI*****
 
 Tkinter library is used for the GUI
 The GUI is used for entering input values and displaying the output if it is safe or not and if it is safe it shows the sequence.
